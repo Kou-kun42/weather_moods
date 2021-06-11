@@ -2,10 +2,16 @@ import requests
 from flask import Flask, render_template, request, redirect, url_for, session
 import pgeocode
 from pprint import PrettyPrinter
+from dotenv import load_dotenv
 import datetime
+import os
+
+load_dotenv()
+secret_key = os.getenv('SECRET_KEY')
+appid = os.getenv('APPID')
 
 app = Flask(__name__)
-app.secret_key = b'_5#y2L"Fyee4Q8z\n\xec]/'
+app.secret_key = secret_key
 
 pp = PrettyPrinter(indent=4)
 
@@ -34,7 +40,7 @@ def weather(zipcode):
     place = geo["place_name"]
 
     params = {
-        "appid": "3c6d8dfb7b1b42dc763fe185cd594053",
+        "appid": appid,
         "lat": lat,
         "lon": lon,
         "units": "imperial",

@@ -1,0 +1,39 @@
+{% extends 'base.html' %} {% block content %}
+
+<main>
+    <h1>7 Day Forcast for {{place}}</h1>
+    {% for day in days %}
+    <div class="day">
+        <h2>{{day['date']}}</h2>
+        <div class="details">
+            <h3>{{day['desc']}}</h3>
+            <p><h3>High: </h3>{{day['high']}} F</p>
+            <p><h3>Low: </h3>{{day['low']}} F</p>
+            {% if day['mood'] %}
+            <p><h3>You're Feeling </h3>{{day['mood']}}</p>
+            {% endif %}
+        </div>
+    </div>
+    {% endfor %}
+
+    <div class="mood">
+        <h2>Record your moods</h2>
+        <form method="POST">
+            <ul>
+                {% for day in days %}
+                <li>
+                    <label for="mood">How does the weather on {{day["date"]}} make you feel?</label>
+                    {% if day['mood'] %}
+                    <input type="text" id="{{day['day']}}" name="{{day['day']}}" value="{{day['mood']}}">
+                    {% else %}
+                    <input type="text" id="{{day['day']}}" name="{{day['day']}}">
+                    {% endif %}
+                </li>
+                {% endfor %}
+            </ul>
+            <input type="submit" value="Enter">
+        </form>
+    </div>
+</main>
+
+{% endblock content %}

@@ -1,0 +1,13 @@
+{% extends 'base.html' %} {% block content %}
+
+<main>
+  <section id="zip">
+    <h1>Enter Zipcode</h1>
+    <form method="POST">
+      <input type="number" name="zipcode" />
+      <input type="submit" class="submit" value="Get Weather Report" />
+    </form>
+  </section>
+</main>
+
+{% endblock content %}
